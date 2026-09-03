@@ -1,0 +1,156 @@
+patient_code,temperature,pain_score,wound_status,symptom_description,sensor_status
+PAT-030,36.6,5,Redness,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-021,37.7,2,Unknown,Incision site feels unusually warm to touch,Normal
+PAT-006,39.7,10,Discharge,Active bleeding noted pooling at incision site,Normal
+PAT-029,39.7,8,Swelling,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-014,37.7,4,Swelling,Mild swelling and redness around perimeter,Normal
+PAT-013,36.9,0,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-011,36.8,1,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-002,36.5,5,Normal,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-022,36.9,5,Normal,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-019,37.0,2,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-003,44.4,5,Normal,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-033,37.3,9,Bleeding,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-002,,2,Swelling,Sensor adhesive peeled off skin; telemetry dropped,Missing
+PAT-019,37.2,1,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-008,36.9,3,Redness,"Patient complains of high fever, rigors, and teeth-chattering chills",Normal
+PAT-015,36.4,0,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-034,37.1,6,Unknown,Mild swelling and redness around perimeter,Normal
+PAT-035,37.0,2,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-014,36.4,5,Redness,Patient feels burning hot with hot flashes and headache,Normal
+PAT-024,36.6,2,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-026,36.6,1,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-026,36.7,4,Swelling,Moderate throbbing pain radiating slightly,Normal
+PAT-018,,5,Normal,Sensor adhesive peeled off skin; telemetry dropped,Missing
+PAT-005,30.9,2,Normal,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-018,39.1,7,Discharge,Incision edge separation with severe local burning pain,Normal
+PAT-013,,6,Normal,Patient reports moderate incision soreness while sensor disconnected,Missing
+PAT-009,37.1,6,Normal,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-025,36.7,4,Redness,Incision site feels unusually warm to touch,Normal
+PAT-030,38.8,10,Swelling,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-030,36.7,3,Redness,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-004,30.1,4,Redness,Sensor transmitting erratic spikes and artifacts,Noisy
+PAT-013,39.5,8,Bleeding,"Severe throbbing, chills, and patient appearing lethargic",Normal
+PAT-006,36.8,0,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-019,45.3,2,Normal,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-030,36.4,1,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-028,,6,Discharge,Sensor adhesive peeled off skin; telemetry dropped,Missing
+PAT-001,37.1,4,Redness,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-031,37.6,10,Discharge,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-016,39.3,7,Discharge,Active bleeding noted pooling at incision site,Normal
+PAT-005,36.6,3,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-031,38.1,5,Redness,Discomfort increasing when changing posture,Normal
+PAT-028,36.7,6,Unknown,"Perceived warmth around dressing, tired",Normal
+PAT-030,36.6,1,Normal,Walking around room with minimal discomfort,Normal
+PAT-021,,3,Discharge,Sensor adhesive peeled off skin; telemetry dropped,Missing
+PAT-035,36.9,6,Normal,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-015,37.9,9,Bleeding,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-020,39.7,9,Swelling,"Severe throbbing, chills, and patient appearing lethargic",Normal
+PAT-017,37.2,0,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-030,36.8,3,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-032,36.7,5,Swelling,Moderate throbbing pain radiating slightly,Normal
+PAT-003,43.1,3,Redness,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-028,39.2,7,Discharge,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-012,29.2,6,Normal,Loose contact causing rapid jumping temperature readings,Noisy
+PAT-009,39.7,5,Bleeding,"Severe throbbing, chills, and patient appearing lethargic",Normal
+PAT-019,36.7,3,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-011,38.3,4,Swelling,Discomfort increasing when changing posture,Normal
+PAT-028,38.5,7,Discharge,Incision edge separation with severe local burning pain,Normal
+PAT-028,36.6,1,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-007,38.3,4,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-035,36.5,3,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-025,,6,Normal,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-016,37.3,4,Redness,"Perceived warmth around dressing, tired",Normal
+PAT-012,36.4,5,Redness,Feeling burning hot with intense shivering despite normal skin probe,Normal
+PAT-013,36.9,3,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-018,,1,Redness,Temperature patch detached during sleep; unmonitored period,Missing
+PAT-029,39.8,9,Bleeding,Incision edge separation with severe local burning pain,Normal
+PAT-024,,8,Swelling,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-019,,4,Swelling,Sensor adhesive peeled off skin; telemetry dropped,Missing
+PAT-029,47.1,2,Redness,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-018,29.4,2,Normal,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-029,36.8,0,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-028,31.5,2,Swelling,Loose contact causing rapid jumping temperature readings,Noisy
+PAT-022,,6,Discharge,Patch removed prior to showering and not replaced,Missing
+PAT-014,36.7,4,Redness,Feeling burning hot with intense shivering despite normal skin probe,Normal
+PAT-007,32.5,3,Swelling,Loose contact causing rapid jumping temperature readings,Noisy
+PAT-029,47.7,2,Swelling,Sensor transmitting erratic spikes and artifacts,Noisy
+PAT-010,36.6,5,Normal,Patient feels burning hot with hot flashes and headache,Normal
+PAT-022,38.3,2,Swelling,Incision site feels unusually warm to touch,Normal
+PAT-013,36.5,3,Normal,Patient reports extreme fever sensation and profuse sweats,Normal
+PAT-028,30.9,7,Redness,Sensor transmitting erratic spikes and artifacts,Noisy
+PAT-022,39.2,10,Swelling,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-002,37.1,6,Redness,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-012,36.7,4,Swelling,Mild swelling and redness around perimeter,Normal
+PAT-011,38.1,2,Redness,Discomfort increasing when changing posture,Normal
+PAT-022,36.4,5,Redness,"Patient complains of high fever, rigors, and teeth-chattering chills",Normal
+PAT-005,46.5,7,Normal,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-020,,5,Redness,Temperature patch detached during sleep; unmonitored period,Missing
+PAT-008,32.3,6,Redness,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-014,39.5,5,Bleeding,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-001,38.8,10,Swelling,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-021,39.7,7,Swelling,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-027,38.9,7,Swelling,Active bleeding noted pooling at incision site,Normal
+PAT-016,36.5,4,Unknown,Mild swelling and redness around perimeter,Normal
+PAT-002,46.7,2,Normal,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-022,38.3,3,Redness,Incision site feels unusually warm to touch,Normal
+PAT-008,36.3,2,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-035,,8,Discharge,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-002,39.8,6,Bleeding,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-007,37.9,5,Unknown,Incision site feels unusually warm to touch,Normal
+PAT-028,,3,Swelling,Patient reports moderate incision soreness while sensor disconnected,Missing
+PAT-015,36.6,5,Normal,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-024,38.3,4,Swelling,Discomfort increasing when changing posture,Normal
+PAT-023,37.1,2,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-004,36.5,0,Normal,Walking around room with minimal discomfort,Normal
+PAT-002,37.0,6,Redness,"Severe chills and sweating reported, but sensor shows baseline normal",Normal
+PAT-023,,5,Swelling,Patch removed prior to showering and not replaced,Missing
+PAT-027,38.9,6,Discharge,"Severe throbbing, chills, and patient appearing lethargic",Normal
+PAT-010,36.9,3,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-016,37.6,5,Redness,"Perceived warmth around dressing, tired",Normal
+PAT-026,36.5,1,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-017,38.0,8,Swelling,Severe unrelenting pain unresponsive to oral analgesics,Normal
+PAT-022,36.9,4,Redness,Moderate throbbing pain radiating slightly,Normal
+PAT-004,31.7,3,Normal,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-003,36.9,8,Swelling,Active bleeding noted pooling at incision site,Normal
+PAT-007,47.7,2,Swelling,Erratic telemetry reading with frequent packet drop,Noisy
+PAT-016,,8,Discharge,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-017,38.4,3,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-028,38.1,4,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-032,36.8,4,Redness,"Patient complains of high fever, rigors, and teeth-chattering chills",Normal
+PAT-016,38.9,8,Swelling,Active bleeding noted pooling at incision site,Normal
+PAT-004,38.0,2,Redness,Moderate throbbing pain radiating slightly,Normal
+PAT-019,36.6,4,Redness,Patient feels burning hot with hot flashes and headache,Normal
+PAT-018,,8,Redness,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-010,39.0,9,Bleeding,Purulent yellowish discharge observed soaking dressing,Normal
+PAT-021,36.5,3,Normal,"Dressing clean and intact, pain well-managed",Normal
+PAT-003,36.9,3,Normal,"Patient complains of high fever, rigors, and teeth-chattering chills",Normal
+PAT-016,37.0,7,Discharge,"Severe throbbing, chills, and patient appearing lethargic",Normal
+PAT-013,37.3,6,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-033,43.6,2,Swelling,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-017,37.2,1,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-017,37.1,6,Swelling,Incision site feels unusually warm to touch,Normal
+PAT-032,36.4,0,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-017,37.0,5,Normal,Patient feels burning hot with hot flashes and headache,Normal
+PAT-006,36.5,0,Normal,"Tolerating oral intake, sleeping well",Normal
+PAT-014,38.9,8,Bleeding,Incision edge separation with severe local burning pain,Normal
+PAT-027,36.6,5,Swelling,Discomfort increasing when changing posture,Normal
+PAT-020,38.7,6,Discharge,Active bleeding noted pooling at incision site,Normal
+PAT-022,36.4,3,Normal,"Patient resting comfortably, no acute distress",Normal
+PAT-002,37.8,4,Swelling,Incision site feels unusually warm to touch,Normal
+PAT-016,,7,Discharge,Patient reports moderate incision soreness while sensor disconnected,Missing
+PAT-008,37.0,6,Normal,Patient reports extreme fever sensation and profuse sweats,Normal
+PAT-013,39.5,10,Swelling,Active bleeding noted pooling at incision site,Normal
+PAT-009,36.6,4,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-029,46.1,5,Redness,Patch partially unseated causing noisy fluctuations,Noisy
+PAT-005,37.0,9,Bleeding,Active bleeding noted pooling at incision site,Normal
+PAT-030,36.8,4,Redness,"Perceived warmth around dressing, tired",Normal
+PAT-007,45.0,3,Redness,Intermittent sensor noise logged by gateway,Noisy
+PAT-035,36.7,4,Normal,Patient feels burning hot with hot flashes and headache,Normal
+PAT-026,,4,Swelling,Patient reports moderate incision soreness while sensor disconnected,Missing
+PAT-006,36.5,3,Redness,Feeling burning hot with intense shivering despite normal skin probe,Normal
+PAT-012,,4,Redness,Wireless sensor dropped offline; missing temperature stream,Missing
+PAT-006,37.5,2,Unknown,Moderate throbbing pain radiating slightly,Normal
+PAT-025,36.6,2,Normal,"Mild surgical site soreness, expected post-op",Normal
+PAT-004,37.1,4,Normal,"Patient complains of high fever, rigors, and teeth-chattering chills",Normal
+PAT-018,,6,Redness,Temperature patch detached during sleep; unmonitored period,Missing
