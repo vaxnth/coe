@@ -1,21 +1,24 @@
-# Post-Operative Escalation Prototype (35% Milestone)
+# Post-Operative Escalation Prototype (70% Milestone)
 
-**Project Title:** A Field-Ready Prototype for Post-Operative Patients Reporting Pain, Temperature and Wound Observations  
-**Milestone:** Strict 35% Implementation (Phases 1–4)  
-**Academic Prototype Notice:** This software is an academic research prototype intended solely for simulated post-operative monitoring analysis. It does NOT provide clinical diagnoses or autonomous medical decisions.
+**Project Title:** A Field-Ready Prototype for Post-Operative Patients Reporting Pain, Temperature & Wound Observations  
+**Current Milestone:** Strict 70% Implementation (Phases 1 through 8 Completed)  
+**Target Completion:** 70% (Development stopped strictly before the final 30%)  
+**Academic Prototype Notice:** This software is an academic research decision-support prototype intended solely for simulated post-operative monitoring analysis. It does NOT provide clinical diagnoses or autonomous medical decisions. Final decisions remain with clinicians or authorized staff.
 
 ---
 
-## 1. Overview of Implemented Scope (35%)
+## 1. Overview of Implemented Scope (70%)
 
-This repository contains the completed foundation, database architecture, simulated observation data generator, and transparent rule-based risk/conflict assessment engine:
+This repository contains the complete 70% milestone across eight fully operational phases:
 
-- **Phase 1 — Project Foundation:** Directory structure, dependency specifications (`requirements.txt`), environment variable template (`.env.example`), and project guidelines.
-- **Phase 2 — Database Layer:** PostgreSQL configuration with SQLAlchemy ORM models (`Patient`, `Observation`, `Escalation`) and strict relationship cascades, accompanied by Pydantic v2 schemas for robust serialization.
-- **Phase 3 — Simulated Data Generation:** Generation pipeline (`data/generate_data.py`) synthesizing 155 post-operative observation records covering all 6 required clinical scenarios.
-- **Phase 4 — Rule-Based Risk and Conflict Engine:** Deterministic, fully explainable rule-based logic (`backend/rules.py`) categorizing observations into `LOW`, `MEDIUM`, `HIGH`, or `CONFLICT`, with data-quality handling for noisy/missing telemetry.
-
-*(Phases 5 through 8 — including FastAPI endpoints, web frontend, clinician dashboard, alerting integrations, and deployment — are intentionally excluded from this milestone).*
+- **Phase 1 — Project Foundation:** Architecture setup, virtual environment, and dependency management.
+- **Phase 2 — Database Layer:** PostgreSQL configuration with SQLAlchemy ORM models (`Patient`, `Observation`, `Escalation`) and Pydantic v2 schemas.
+- **Phase 3 — Simulated Data Generation:** Pipeline (`data/generate_data.py`) synthesizing 155 post-operative observation records covering all 6 clinical scenarios.
+- **Phase 4 — Rule-Based Risk & Conflict Engine:** Transparent, deterministic engine (`backend/rules.py`) categorizing observations into `LOW`, `MEDIUM`, `HIGH`, or `CONFLICT`.
+- **Phase 5 — FastAPI Backend & REST APIs:** Complete REST API (`backend/main.py`) with PostgreSQL connectivity, Pydantic validation, and comprehensive clinical endpoints.
+- **Phase 6 — Patient Web Interface:** Clean HTML/CSS/Vanilla JS portal (`/patient`) for patient self-reporting with instant rule-based evaluation feedback and decision-support notices.
+- **Phase 7 — Clinician Dashboard:** Live decision-support dashboard (`/clinician`) retrieving real PostgreSQL data, displaying summary metrics, risk filters, and high-visibility urgency badges.
+- **Phase 8 — Escalation & Follow-Up Tracking:** Complete escalation lifecycle management (`OPEN` &rarr; `IN_PROGRESS` &rarr; `RESOLVED`), clinician assignment, and due-date tracking.
 
 ---
 
@@ -25,26 +28,38 @@ This repository contains the completed foundation, database architecture, simula
 post_op_escalation/
 │
 ├── backend/
-│   ├── database.py       # PostgreSQL database connection and session management
+│   ├── database.py       # PostgreSQL connection, session management, table creation
 │   ├── models.py         # SQLAlchemy ORM models (Patient, Observation, Escalation)
-│   ├── schemas.py        # Pydantic data validation schemas
-│   └── rules.py          # Explainable rule-based risk and conflict engine
+│   ├── schemas.py        # Pydantic v2 validation schemas
+│   ├── rules.py          # Deterministic rule-based risk & conflict assessment engine
+│   ├── main.py           # FastAPI REST application & web route handlers
+│   ├── seed_data.py      # Database seeder populating PostgreSQL with simulated cases
+│   └── tests/
+│       └── test_workflow.py # Comprehensive automated test suite (10 test suites)
+│
+├── frontend/
+│   ├── patient.html      # Patient self-reporting web interface
+│   ├── clinician.html    # Clinician decision support dashboard
+│   ├── css/
+│   │   └── styles.css    # Unified clinical UI design system
+│   └── js/
+│       ├── patient.js    # Patient portal frontend logic & API communication
+│       └── clinician.js  # Clinician dashboard metrics, filtering & follow-up tracking
 │
 ├── data/
 │   ├── generate_data.py  # Synthetic dataset generator for 6 clinical scenarios
 │   └── simulated_observations.csv # Generated dataset (155 records)
 │
+├── .env                  # Active PostgreSQL configuration
 ├── .env.example          # Environment variables template
 ├── requirements.txt      # Core project dependencies
 ├── .gitignore            # Python environment ignore rules
-└── README.md             # Milestone documentation
+└── README.md             # 70% milestone documentation
 ```
 
 ---
 
 ## 3. Database Schema
-
-The database is built on SQLAlchemy with PostgreSQL compatibility:
 
 1. **`patients` Table:**
    - `id` (Integer, Primary Key)
@@ -67,72 +82,95 @@ The database is built on SQLAlchemy with PostgreSQL compatibility:
    - `timestamp` (DateTime)
    - Relationships: `patient` (many-to-one), `escalation` (one-to-one)
 
-3. **`escalations` Table:**
+3. **`escalations` Table (Phase 8 Enhanced):**
    - `id` (Integer, Primary Key)
    - `patient_id` (Integer, Foreign Key to `patients.id`)
    - `observation_id` (Integer, Foreign Key to `observations.id`)
-   - `risk_level` (String: `LOW`, `MEDIUM`, `HIGH`, `CONFLICT`)
-   - `reason` (Text, transparent explanation)
-   - `recommendation` (Text, non-diagnostic guidance)
+   - `risk_level` (String: `HIGH`, `CONFLICT`)
+   - `reason` (Text, transparent clinical explanation)
+   - `recommendation` (Text, actionable triage advice)
+   - `status` (String: `OPEN`, `IN_PROGRESS`, `RESOLVED`)
+   - `assigned_staff` (String, Nullable, assigned clinician/staff name)
+   - `due_date` (DateTime, Nullable, target follow-up completion deadline)
    - `created_at` (DateTime)
+   - `updated_at` (DateTime)
    - Relationships: `patient` (many-to-one), `observation` (one-to-one)
 
 ---
 
-## 4. Simulated Dataset
+## 4. FastAPI REST API Endpoints
 
-Generated using `python data/generate_data.py`, output to `data/simulated_observations.csv`.
-
-**Columns:**
-`patient_code`, `temperature`, `pain_score`, `wound_status`, `symptom_description`, `sensor_status`
-
-**Clinical Scenarios Covered:**
-1. **Normal Observations:** Stable baseline vitals (temp 36.3–37.2°C, pain 0–3, wound Normal).
-2. **Medium-Risk Observations:** Moderate pain (4–6) or moderate fever (37.5–38.4°C) or minor wound issues (`Redness`, `Swelling`).
-3. **High-Risk Observations:** Severe pain (7–10) or high fever (≥38.5°C) or acute wound complications (`Discharge`, `Bleeding`).
-4. **Conflicting Observations:** Sensor reads normal body temperature (36.4–37.1°C), but patient reports chills, rigors, or severe fever sensation.
-5. **Missing Sensor Data:** Telemetry uncoupled or missing (`temperature` is null, `sensor_status` = `Missing`).
-6. **Noisy Sensor Data:** Hardware artifacts or erratic sensor values (`sensor_status` = `Noisy`).
+| Method | Path | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | Application status, milestone metadata, and safety notice |
+| `GET` | `/health` | Backend and PostgreSQL connectivity health check |
+| `POST` | `/patients` | Create a simulated patient |
+| `GET` | `/patients` | Retrieve list of simulated patients |
+| `GET` | `/patients/{patient_id}` | Retrieve details of a single patient |
+| `POST` | `/observations` | Submit a patient observation into PostgreSQL |
+| `GET` | `/patients/{patient_id}/observations` | Retrieve observations for a given patient |
+| `POST` | `/assess/{observation_id}` | Run deterministic rule engine on observation (auto-creates escalation if HIGH/CONFLICT) |
+| `GET` | `/assessments` | Retrieve observation assessments for clinician dashboard |
+| `POST` | `/escalations` | Create a clinical escalation record |
+| `GET` | `/escalations` | View escalation cases (supports status/risk filtering) |
+| `GET` | `/escalations/{escalation_id}` | View details of a specific escalation |
+| `PATCH` | `/escalations/{escalation_id}/status` | Update status (`OPEN` &rarr; `IN_PROGRESS` &rarr; `RESOLVED`) |
+| `PATCH` | `/escalations/{escalation_id}/assign` | Assign case to clinician / authorized staff member |
+| `PATCH` | `/escalations/{escalation_id}/due-date` | Set or update follow-up deadline |
+| `GET` | `/patient` | Serve patient self-reporting web interface |
+| `GET` | `/clinician` | Serve clinician decision support dashboard |
 
 ---
 
-## 5. Rule-Based Risk & Conflict Assessment
+## 5. End-to-End Workflow Verification
 
-The engine in `backend/rules.py` implements pure deterministic rules without black-box ML:
-
-- **Input:** `temperature`, `pain_score`, `wound_status`, `symptom_description`, `sensor_status`
-- **Output:**
-  ```json
-  {
-    "risk_level": "HIGH",
-    "reason": "Severely abnormal temperature recorded (39.1°C). Severe pain level reported (8/10). Critical wound observation noted (Discharge).",
-    "recommendation": "Clinician review is required. Prompt clinical evaluation and physical assessment recommended."
-  }
-  ```
+```
+Patient Web Form (/patient)
+        ↓ (POST /observations)
+FastAPI Backend
+        ↓ (SQLAlchemy ORM)
+PostgreSQL Database
+        ↓ (POST /assess/{id})
+Rule-Based Risk Engine (backend/rules.py)
+        ↓
+Risk Assessment (HIGH / CONFLICT)
+        ↓
+Escalation Created (Status: OPEN)
+        ↓
+Clinician Dashboard (/clinician)
+        ↓ (PATCH /escalations/{id}/assign)
+Assigned to Clinician (Status: IN_PROGRESS)
+        ↓ (PATCH /escalations/{id}/due-date)
+Follow-Up Due Date Set
+        ↓ (PATCH /escalations/{id}/status)
+Follow-Up Completed (Status: RESOLVED)
+```
 
 ---
 
 ## 6. How to Run & Verify
 
-1. **Create and activate environment:**
+1. **Activate Virtual Environment:**
    ```bash
-   python3 -m venv .venv
    source .venv/bin/activate
-   pip install -r requirements.txt
    ```
 
-2. **Configure environment:**
+2. **Seed the Database with Simulated Data:**
    ```bash
-   cp .env.example .env
-   # Update DATABASE_URL with your PostgreSQL credentials
+   python -m backend.seed_data
    ```
 
-3. **Generate synthetic dataset:**
+3. **Run Automated Test Suite:**
    ```bash
-   python data/generate_data.py
+   python -m pytest backend/tests/test_workflow.py -v
    ```
 
-4. **Verify rules and models:**
+4. **Start the FastAPI Web Server:**
    ```bash
-   python -c "from backend.models import Base; print('Models valid. Registered tables:', list(Base.metadata.tables.keys()))"
+   uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
    ```
+
+5. **Access the Interfaces:**
+   - **Patient Reporting Portal:** [http://127.0.0.1:8000/patient](http://127.0.0.1:8000/patient)
+   - **Clinician Dashboard:** [http://127.0.0.1:8000/clinician](http://127.0.0.1:8000/clinician)
+   - **Interactive API Documentation (Swagger):** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)

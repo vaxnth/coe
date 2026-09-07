@@ -78,7 +78,11 @@ class Escalation(Base):
     risk_level = Column(String(20), nullable=False)
     reason = Column(Text, nullable=False)
     recommendation = Column(Text, nullable=False)
+    status = Column(String(20), default="OPEN", nullable=False)  # Allowed: OPEN, IN_PROGRESS, RESOLVED
+    assigned_staff = Column(String(100), nullable=True)
+    due_date = Column(DateTime, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     # Relationships
     patient = relationship("Patient", back_populates="escalations")
@@ -87,5 +91,5 @@ class Escalation(Base):
     def __repr__(self):
         return (
             f"<Escalation(id={self.id}, patient_id={self.patient_id}, "
-            f"risk='{self.risk_level}')>"
+            f"risk='{self.risk_level}', status='{self.status}')>"
         )

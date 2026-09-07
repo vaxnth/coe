@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Operative Self-Reporting Portal | BioTelemetry 3D</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Apple Health Inspired Navigation Bar -->
+  <header class="app-navbar">
+    <div class="brand-wrapper">
+      <div class="brand-3d-symbol">⚕</div>
+      <div class="brand-text">
+        <h1>
+          BioRecovery
+          <span class="version-pill">Mobile Health</span>
+        </h1>
+        <span>Post-Operative Patient Monitoring</span>
+      </div>
+    </div>
+    <nav class="nav-tabs-pill">
+      <a href="/patient" class="nav-tab-link active" id="nav-patient">
+        <span>👤</span> Patient Portal
+      </a>
+      <a href="/clinician" class="nav-tab-link" id="nav-clinician">
+        <span>🩺</span> Clinician Dashboard
+      </a>
+    </nav>
+  </header>
+
+  <!-- Mandatory Safety Notice Banner -->
+  <div class="safety-banner-app" role="alert">
+    <span class="shield-glyph">🛡️</span>
+    <div>
+      <strong>Notice:</strong> This system provides decision support only. Final decisions remain with clinicians or authorized staff.
+    </div>
+  </div>
+
+  <main class="patient-app-container">
+    <!-- Patient Header Greeting -->
+    <div class="patient-greeting-header">
+      <div class="greeting-text">
+        <h2 id="dynamicGreeting">Good Afternoon</h2>
+        <p>Let’s check your surgical recovery baseline and recent observations.</p>
+      </div>
+      <div class="patient-profile-pill">
+        <div class="avatar-3d-circle">JS</div>
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 700;" id="headerPatientCode">PAT-001</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);" id="headerSurgery">Appendectomy (Day 3)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prominent Hero Recovery Overview 3D Card -->
+    <section class="hero-recovery-card" aria-label="Recovery Status Overview">
+      <div class="hero-content-left">
+        <div style="font-size: 0.76rem; font-weight: 700; color: var(--teal-primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+          Recovery Status • Simulated Assessment
+        </div>
+        <h3>Post-Operative Recovery Status</h3>
+        <p>
+          Continuous tracking of reported pain, core body temperature, and surgical incision condition. All vital parameters are triaged by the clinical decision support engine.
+        </p>
+        <div class="hero-badges-row">
+          <span id="heroRiskBadge" class="risk-pill-badge LOW">LOW RISK</span>
+          <span style="font-size: 0.82rem; color: var(--text-muted);">
+            Baseline vitals within expected recovery threshold
+          </span>
+        </div>
+      </div>
+
+      <!-- 3D Medical Shield Visual -->
+      <div class="hero-3d-visual-container">
+        <svg class="shield-3d-svg" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="shieldGrad" x1="80" y1="10" x2="80" y2="150" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#0d9488"/>
+              <stop offset="100%" stop-color="#0f766e"/>
+            </linearGradient>
+            <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ef4444"/>
+              <stop offset="100%" stop-color="#f43f5e"/>
+            </linearGradient>
+          </defs>
+          <!-- Outer 3D Shield Outline -->
+          <path d="M80 15 C115 15 140 28 140 60 C140 105 80 145 80 145 C80 145 20 105 20 60 C20 28 45 15 80 15 Z" 
+                fill="url(#shieldGrad)" opacity="0.1"/>
+          <path d="M80 20 C110 20 132 32 132 60 C132 100 80 136 80 136 C80 136 28 100 28 60 C28 32 50 20 80 20 Z" 
+                stroke="#0d9488" stroke-width="3" fill="none"/>
+          <!-- Inner Healthcare Plus Cross with 3D Bevel -->
+          <rect x="73" y="45" width="14" height="42" rx="4" fill="#0d9488"/>
+          <rect x="59" y="59" width="42" height="14" rx="4" fill="#0d9488"/>
+          <!-- Heartbeat Pulse Accent Node -->
+          <circle cx="80" cy="66" r="6" fill="url(#heartGrad)">
+            <animate attributeName="r" values="5;7.5;5" dur="1.2s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 6 Health Metric Cards (Apple Health Rounded Style) -->
+    <section class="metrics-grid-6" aria-label="Health Metric Cards">
+      <!-- 1. Pain Level -->
+      <div class="health-metric-card" id="metricCardPain">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Pain Intensity</span>
+          <div class="metric-icon-box" style="color: #0d9488;">⚡</div>
+        </div>
+        <div class="metric-value-huge" id="cardValPain">2 <span style="font-size: 1.1rem; color: var(--text-muted);">/ 10</span></div>
+        <div class="metric-status-subtext" id="cardStatusPain">Mild • Well-tolerated</div>
+      </div>
+
+      <!-- 2. Temperature -->
+      <div class="health-metric-card" id="metricCardTemp">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Temperature</span>
+          <div class="metric-icon-box" style="color: #0284c7;">🌡️</div>
+        </div>
+        <div class="metric-value-huge" id="cardValTemp">36.9 <span style="font-size: 1.1rem; color: var(--text-muted);">°C</span></div>
+        <div class="metric-status-subtext" id="cardStatusTemp">Normal recovery baseline</div>
+      </div>
+
+      <!-- 3. Wound Observation -->
+      <div class="health-metric-card" id="metricCardWound">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Wound Status</span>
+          <div class="metric-icon-box" style="color: #10b981;">🩹</div>
+        </div>
+        <div class="metric-value-huge" id="cardValWound" style="font-size: 1.6rem;">Normal</div>
+        <div class="metric-status-subtext" id="cardStatusWound">Clean edges, intact</div>
+      </div>
+
+      <!-- 4. Overall Risk -->
+      <div class="health-metric-card" id="metricCardRisk">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Triage Risk</span>
+          <div class="metric-icon-box" style="color: #059669;">🛡️</div>
+        </div>
+        <div class="metric-value-huge" id="cardValRisk" style="font-size: 1.6rem; color: #059669;">LOW</div>
+        <div class="metric-status-subtext">No acute intervention</div>
+      </div>
+
+      <!-- 5. Latest Observation -->
+      <div class="health-metric-card" id="metricCardLatest">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Sensor Telemetry</span>
+          <div class="metric-icon-box" style="color: #0d9488;">📶</div>
+        </div>
+        <div class="metric-value-huge" id="cardValSensor" style="font-size: 1.6rem;">Normal</div>
+        <div class="metric-status-subtext">Active telemetry probe</div>
+      </div>
+
+      <!-- 6. Escalation Status -->
+      <div class="health-metric-card" id="metricCardEscalation">
+        <div class="metric-card-top">
+          <span class="metric-label-small">Escalation Status</span>
+          <div class="metric-icon-box" style="color: #64748b;">📋</div>
+        </div>
+        <div class="metric-value-huge" id="cardValEsc" style="font-size: 1.6rem; color: #059669;">Routine</div>
+        <div class="metric-status-subtext">Standard monitoring protocol</div>
+      </div>
+    </section>
+
+    <!-- Observation Reporting Interface + 3D Anatomical Telemetry Stage -->
+    <div class="observation-stage-split">
+      <!-- Observation Reporting Form (White Card) -->
+      <div class="form-card-white">
+        <div class="form-title-group">
+          <h3>Report Post-Operative Symptoms</h3>
+          <p>Submit your daily vitals to the clinical decision support engine.</p>
+        </div>
+
+        <form id="observationForm">
+          <!-- Patient Identifier -->
+          <div class="input-field-block">
+            <label for="patientCode">Patient Identifier Code</label>
+            <input 
+              type="text" 
+              id="patientCode" 
+              class="apple-style-input" 
+              placeholder="e.g. PAT-001" 
+              value="PAT-001" 
+              required
+            >
+          </div>
+
+          <div class="form-row-2col">
+            <!-- Telemetry Sensor Status -->
+            <div class="input-field-block">
+              <label for="sensorStatus">Telemetry Sensor Status</label>
+              <select id="sensorStatus" class="apple-style-input" required>
+                <option value="Normal" selected>Normal — Active & Calibrated</option>
+                <option value="Noisy">Noisy — Erratic / Unreliable</option>
+                <option value="Missing">Missing — Detached / Offline</option>
+              </select>
+            </div>
+
+            <!-- Temperature -->
+            <div class="input-field-block">
+              <label for="temperature">Body Temperature (°C)</label>
+              <input 
+                type="number" 
+                id="temperature" 
+                class="apple-style-input" 
+                step="0.1" 
+                min="30.0" 
+                max="45.0" 
+                placeholder="36.8" 
+                value="36.9"
+              >
+            </div>
+          </div>
+
+          <!-- Touch-Friendly Pain Indicator (0-10) -->
+          <div class="input-field-block">
+            <label>How are you feeling? (Pain Score 0 – 10)</label>
+            <div class="pain-touch-panel">
+              <div class="pain-touch-header">
+                <span id="painDescriptor" class="pain-grade-badge">Mild Pain (1-3)</span>
+                <div id="painValueDisplay" class="pain-number-dial">2</div>
+              </div>
+              <input 
+                type="range" 
+                id="painScore" 
+                class="pain-slider-track" 
+                min="0" 
+                max="10" 
+                value="2" 
+                step="1"
+              >
+              <div class="pain-ticks-row">
+                <span>0 (None)</span>
+                <span>2 (Mild)</span>
+                <span>5 (Moderate)</span>
+                <span>7 (Severe)</span>
+                <span>10 (Worst)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wound Observation -->
+          <div class="input-field-block">
+            <label for="woundStatus">Surgical Wound Appearance</label>
+            <select id="woundStatus" class="apple-style-input" required>
+              <option value="Normal" selected>Normal — Clean incision, closed margins</option>
+              <option value="Redness">Redness — Erythema surrounding perimeter</option>
+              <option value="Swelling">Swelling — Localized edema / puffiness</option>
+              <option value="Discharge">Discharge — Drainage or purulent seepage</option>
+              <option value="Bleeding">Bleeding — Active bleeding pooling</option>
+              <option value="Unknown">Unknown — Occluded by dressing / uninspected</option>
+            </select>
+          </div>
+
+          <!-- Symptom Description -->
+          <div class="input-field-block">
+            <label for="symptomDescription">Qualitative Symptoms & Sensations</label>
+            <textarea 
+              id="symptomDescription" 
+              class="apple-style-input" 
+              rows="3" 
+              placeholder="Describe any chills, throbbing, dizziness, nausea, or incision site sensations..."
+            >Patient resting comfortably, mild surgical site soreness expected post-op.</textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submitBtn" class="btn-submit-teal">
+            <span>⚡</span> Submit Observation & Analyze
+          </button>
+        </form>
+
+        <!-- 3D Assessment Result Feedback Card -->
+        <div id="resultCard" class="assessment-card-3d" aria-live="polite">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.85rem; margin-bottom: 1.15rem;">
+            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+              Triage Assessment Result
+            </span>
+            <span id="riskBadge" class="risk-pill-badge LOW">LOW RISK</span>
+          </div>
+
+          <div style="margin-bottom: 0.85rem;">
+            <h5 style="font-size: 0.74rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem;">
+              Transparent Reason
+            </h5>
+            <p id="resultReason" style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.5;">
+              All vital observations within expected recovery baseline.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 0.85rem;">
+            <h5 style="font-size: 0.74rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem;">
+              Clinical Recommendation
+            </h5>
+            <p id="resultRecommendation" style="font-size: 0.92rem; color: var(--teal-dark); line-height: 1.5;">
+              Continue standard routine post-operative monitoring protocol.
+            </p>
+          </div>
+
+          <div id="escalationNotice" style="display: none; background: #fef2f2; border: 1px solid #fecdd3; border-radius: var(--radius-sm); padding: 0.85rem 1rem; color: #991b1b; font-size: 0.85rem;">
+            <strong>🚨 Clinical Escalation Alert:</strong> This observation has been automatically prioritized in the clinician triage queue.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Anatomical Body Map Panel -->
+      <div class="visual-body-panel">
+        <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-card); padding-bottom: 0.75rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.45rem;">
+            <span>🧬</span> 3D Telemetry Map
+          </h4>
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--teal-primary); background: var(--teal-subtle); padding: 0.2rem 0.6rem; border-radius: var(--radius-pill);">
+            LIVE SENSOR
+          </span>
+        </div>
+
+        <div class="torso-stage" style="background: transparent;">
+          <div class="perspective-grid" style="background: linear-gradient(rgba(13, 148, 136, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 148, 136, 0.12) 1px, transparent 1px);"></div>
+
+          <svg class="human-silhouette-svg" viewBox="0 0 200 320" fill="none">
+            <defs>
+              <linearGradient id="silhouetteGrad" x1="100" y1="0" x2="100" y2="320" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#0d9488" stop-opacity="0.15"/>
+                <stop offset="60%" stop-color="#0284c7" stop-opacity="0.08"/>
+                <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.02"/>
+              </linearGradient>
+            </defs>
+
+            <circle cx="100" cy="36" r="22" stroke="#0d9488" stroke-width="1.8" fill="rgba(13, 148, 136, 0.06)"/>
+            <path d="M60 85 C75 70 125 70 140 85 C155 100 152 140 145 180 C140 210 135 240 138 270 L62 270 C65 240 60 210 55 180 C48 140 45 100 60 85 Z" 
+                  stroke="#0d9488" stroke-width="1.8" fill="url(#silhouetteGrad)"/>
+
+            <!-- Cardiac Pulse Wave -->
+            <circle id="heartPulseNode" cx="108" cy="125" r="7" fill="#ef4444">
+              <animate attributeName="r" values="6;8.5;6" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Surgical Incision Observation Marker -->
+            <rect id="woundNode" x="92" y="195" width="16" height="4" rx="2" fill="#0d9488"/>
+          </svg>
+
+          <div class="floating-telemetry-badge" style="top: 26%; left: 0%;" id="floatTempBadge">
+            <span>🌡️</span> <span id="floatTempVal">36.9°C</span>
+          </div>
+
+          <div class="floating-telemetry-badge" style="top: 48%; right: -2%;" id="floatPainBadge">
+            <span>⚡</span> <span id="floatPainVal">Pain: 2/10</span>
+          </div>
+
+          <div class="floating-telemetry-badge" style="bottom: 25%; left: 2%;" id="floatWoundBadge">
+            <span>🩹</span> <span id="floatWoundVal">Normal</span>
+          </div>
+
+          <div class="floating-telemetry-badge" style="bottom: 12%; right: 2%;" id="floatSensorBadge">
+            <span>📶</span> <span id="floatSensorVal">Normal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/patient.js"></script>
+</body>
+</html>

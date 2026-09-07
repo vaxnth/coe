@@ -31,5 +31,6 @@ def get_db():
 
 def create_tables(target_engine=None):
     """Create all configured database tables."""
+    from . import models  # Ensure all model classes register with Base
     eng = target_engine or engine
     Base.metadata.create_all(bind=eng)
