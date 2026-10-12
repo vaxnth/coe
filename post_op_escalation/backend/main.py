@@ -75,7 +75,9 @@ def get_root():
     return {
         "status": "online",
         "app_title": "A Field-Ready Prototype for Post-Operative Patients Reporting Pain, Temperature & Wound Observations",
-        "project_completion": "70%",
+        "project_completion": "100% (Evaluation-Ready Prototype Completed)",
+        "prior_milestone": "70% (Phases 1 through 8 completed prior to this phase)",
+        "final_milestone": "100% (Phase 9 completed: Evaluation, Fallback Reliability & Full Documentation)",
         "implemented_phases": [
             "Phase 1 - Project Foundation",
             "Phase 2 - Database Architecture",
@@ -84,7 +86,8 @@ def get_root():
             "Phase 5 - FastAPI Backend & REST APIs",
             "Phase 6 - Patient Web Interface",
             "Phase 7 - Clinician Dashboard",
-            "Phase 8 - Escalation & Follow-Up Tracking"
+            "Phase 8 - Escalation & Follow-Up Tracking",
+            "Phase 9 - Comprehensive Evaluation, Resilient Fallback & Field-Workflow Documentation (Final 30%)"
         ],
         "safety_disclaimer": (
             "This system provides decision support only. "

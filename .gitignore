@@ -20,3 +20,9 @@ post_op_escalation/.env
 .DS_Store
 .vscode/
 .idea/
+
+# Testing and local databases
+.pytest_cache/
+*.db
+post_op_escalation/.pytest_cache/
+post_op_escalation/*.db

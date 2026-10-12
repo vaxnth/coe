@@ -1,7 +1,19 @@
-SQLAlchemy>=2.0.0
-psycopg2-binary>=2.9.0
-pydantic>=2.0.0
-pandas>=2.0.0
-python-dotenv>=1.0.0
+# Core Backend & Database Layer
 fastapi>=0.110.0
 uvicorn>=0.28.0
+pydantic>=2.0.0
+SQLAlchemy>=2.0.0
+psycopg2-binary>=2.9.0
+python-dotenv>=1.0.0
+
+# Automated Testing
+pytest>=8.0.0
+httpx>=0.27.0
+
+# Data Science, Evaluation & Notebooks
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.4.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+nbformat>=5.9.0

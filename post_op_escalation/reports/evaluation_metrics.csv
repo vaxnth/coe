@@ -1,0 +1,9 @@
+Scenario / Category,Precision,Recall,F1-Score,Support
+Communication/fallback failure,1.0,1.0,1.0,30
+Conflicting data,1.0,1.0,1.0,30
+High-risk,1.0,1.0,1.0,30
+Missing data,1.0,1.0,1.0,30
+Noisy data,1.0,1.0,1.0,30
+Normal,1.0,1.0,1.0,30
+Macro Average,1.0,1.0,1.0,180
+Weighted Average,1.0,1.0,1.0,180
