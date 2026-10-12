@@ -10,16 +10,31 @@ IS_TESTING = os.getenv("TESTING", "0") in ("1", "true", "True")
 
 if IS_TESTING:
     DATABASE_URL = os.getenv("TEST_DATABASE_URL", "sqlite:///./post_op_test.db")
+    connect_args = {"check_same_thread": False}
+    engine = create_engine(DATABASE_URL, connect_args=connect_args, echo=False)
 else:
-    DATABASE_URL = os.getenv(
+    target_url = os.getenv(
         "DATABASE_URL",
         "postgresql://postgres:postgres@localhost:5432/post_op_db"
     )
-
-connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
-
-# Create database engine
-engine = create_engine(DATABASE_URL, connect_args=connect_args, echo=False)
+    if target_url.startswith("postgresql"):
+        try:
+            # Check if PostgreSQL is actively listening and reachable
+            test_eng = create_engine(target_url, connect_args={"connect_timeout": 1}, echo=False)
+            with test_eng.connect() as conn:
+                pass
+            DATABASE_URL = target_url
+            connect_args = {}
+            engine = test_eng
+        except Exception:
+            # PostgreSQL unavailable; fallback gracefully to SQLite local database
+            DATABASE_URL = "sqlite:///./post_op.db"
+            connect_args = {"check_same_thread": False}
+            engine = create_engine(DATABASE_URL, connect_args=connect_args, echo=False)
+    else:
+        DATABASE_URL = target_url
+        connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+        engine = create_engine(DATABASE_URL, connect_args=connect_args, echo=False)
 
 # Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
